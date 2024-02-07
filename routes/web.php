@@ -25,6 +25,7 @@ Route::get('/threads', [ThreadController::class, 'index'])->name('threads');
 Route::get('/threads/create', [ThreadController::class, 'create'])->name('threads.create');
 Route::post('/threads/create', [ThreadController::class, 'store']);
 Route::post('/threads/{thread}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
