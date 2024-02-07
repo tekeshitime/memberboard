@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Thread;
 
 class ThreadController extends Controller
 {
     public function index()
     {
-        return view('threads.index');
+        $threads = Thread::latest()->paginate(20);
+        return view('threads.index', [
+            'threads' => $threads
+        ]);
     }
 
     public function create()
