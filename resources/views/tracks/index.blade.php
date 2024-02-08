@@ -18,9 +18,11 @@
             @if($tracks->count())
             @foreach($tracks as $track)
             <div class="trackBox">
-                <img src="{{ asset($track->pathArtwork) }}" alt="">
-                <span>￥{{$track->price}}</span>・<span>{{$track->bpm}}</span>
-                <h3 class="trackTitle">{{$track->trackTitle}}</h3>
+                <a href="{{ route('tracks.show', ['track' => $track->id]) }}">
+                    <img src="{{ asset($track->pathArtwork) }}" alt="">
+                    <span>￥{{$track->price}}</span>・<span>{{$track->bpm}}</span>
+                    <h3 class="trackTitle">{{$track->trackTitle}}</h3>
+                </a>
                 <h4 class="artistName">-artistが入る-</h4>
 
                 <div id="demoList">
