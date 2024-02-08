@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,15 @@ Route::get('/threads/create', [ThreadController::class, 'create'])->name('thread
 Route::post('/threads/create', [ThreadController::class, 'store']);
 Route::post('/threads/{thread}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+Route::resource('tracks', TrackController::class)->names([
+    'index' => 'tracks',
+    'create' => 'tracks.create',
+    'show' => 'tracks.show',
+    'edit' => 'tracks.edit',
+    'update' => 'tracks.update',
+    'destroy' => 'tracks.destroy',
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
