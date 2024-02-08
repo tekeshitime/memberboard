@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tracks') }}
         </h2>
+        <a href="{{ route('tracks.create')}}">Create New Track</a>
     </x-slot>
     <?php
     // (B1) GET ALL SONGS
@@ -14,18 +15,23 @@
             <h2>トラック一覧</h2>
         </div>
         <div class="flex flex-wrap gap-x-4 gap-y-4">
-            @foreach(range(1, 20) as $index)
+            @if($tracks->count())
+            @foreach($tracks as $track)
             <div class="trackBox">
-                <img src="https://placehold.jp/150x150.png" alt="">
-                <span>￥2000</span>・<span>80BPM</span>
-                <h3 class="trackTitle">Command</h3>
-                <h4 class="artistName">BLANC</h4>
+                <img src="{{ asset($track->pathArtwork) }}" alt="">
+                <span>￥{{$track->price}}</span>・<span>{{$track->bpm}}</span>
+                <h3 class="trackTitle">{{$track->trackTitle}}</h3>
+                <h4 class="artistName">-artistが入る-</h4>
 
                 <div id="demoList">
                     <button class='song border-2 border-solid border-gray-400 text-gray-400 hover:text-white hover:bg-gray-400 text-gray font-bold py-1 px-2 rounded-full text-xs' data-src='audiosample.wav'>Preview</button>
                 </div>
             </div>
             @endforeach
+            @else
+            There is no Track.
+            @endif
+
         </div>
     </div>
 
