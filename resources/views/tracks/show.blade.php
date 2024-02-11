@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <x-slot name="header">
         <a href="{{ route('tracks.index') }}">
@@ -6,6 +7,8 @@
                     {{$track->trackTitle}}
                 </h2>
     </x-slot>
+
+    
 
     <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2 items-center">
         <div class="flex gap-8">
@@ -29,7 +32,20 @@
                     <div class="flex items-center justify-between">
                         <p>{{$track->trackTitle}}</p>
                         <span>￥{{$track->price}}</span>
-                        <button type="submit" class="bg-blue-500 rounded font-medium px-4 py-2 text-white">購入する</button>
+                        <form action="{{ asset('payment') }}" method="POST" class="text-center mt-5">
+                        @csrf
+                        <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ env('STRIPE_KEY') }}"
+                            data-amount="{{$track->price}}"
+                            data-name="{{$track->trackTitle}}"
+                            data-label="トラックを購入する"
+                            data-description="ダウンロードリンクが送付されます。"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto"
+                            data-currency="JPY">
+                        </script>
+                        
                     </div>
                 </div>
             </div>

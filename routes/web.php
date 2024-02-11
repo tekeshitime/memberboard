@@ -51,4 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Stripeの処理
+Route::post('/payment', 'PaymentsController@payment')->name('payment');
+// 決済完了ページ
+Route::get('/complete', 'PaymentsController@complete')->name('complete');
+
 require __DIR__ . '/auth.php';
