@@ -23,7 +23,7 @@
                     <span>￥{{$track->price}}</span>・<span>{{$track->bpm}}</span>
                     <h3 class="trackTitle">{{$track->trackTitle}}</h3>
                 </a>
-                <h4 class="artistName">-artistが入る-</h4>
+                {{-- <h4 class="artistName"></h4> --}}
 
                 <div id="demoList">
                     <button class='song border-2 border-solid border-gray-400 text-gray-400 hover:text-white hover:bg-gray-400 text-gray font-bold py-1 px-2 rounded-full text-xs' data-src='audiosample.wav'>Preview</button>

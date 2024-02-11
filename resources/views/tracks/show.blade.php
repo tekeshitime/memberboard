@@ -29,7 +29,7 @@
                     <div class="flex items-center justify-between">
                         <p>{{$track->trackTitle}}</p>
                         <span>￥{{$track->price}}</span>
-                        <button type="submit" class="bg-blue-500 rounded font-medium px-4 py-2 text-white">Add Cart</button>
+                        <button type="submit" class="bg-blue-500 rounded font-medium px-4 py-2 text-white">購入する</button>
                     </div>
                 </div>
             </div>
