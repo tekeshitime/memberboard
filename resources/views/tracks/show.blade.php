@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <a href="{{ route('tracks.index') }}">
-            << </a>
+            ＜ </a>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{$track->trackTitle}}
                 </h2>

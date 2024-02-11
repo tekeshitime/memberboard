@@ -33,6 +33,6 @@ class PaymentsController extends Controller
 
     public function complete()
     {
-        return view('complete');
+        return view('tracks.complete');
     }
 }
