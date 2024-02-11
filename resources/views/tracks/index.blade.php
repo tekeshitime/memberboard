@@ -1,16 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
+        <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tracks') }}
+            Tracks
         </h2>
-        <a href="{{ route('tracks.create')}}">Create New Track</a>
+        <a href="{{ route('tracks.create')}}" class="bg-gray-500 rounded font-medium px-4 py-2 text-white">Sell New Track</a>
+    </div>
     </x-slot>
     <?php
     // (B1) GET ALL SONGS
-    $songs = glob("audio/*", GLOB_BRACE);
+    $songs = glob("/storage/audio/sample/*", GLOB_BRACE);
     ?>
 
-    <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2 items-center">
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 grid gap-y-2 items-center ">
+        
         <div class="flex justify-between items-center">
             <h2>トラック一覧</h2>
         </div>
@@ -36,15 +39,19 @@
 
         </div>
     </div>
-
-
-
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
+        <h2>お知らせ</h2>
+        <div>
+            <p>2024.02.01-楽曲○○を追加しました。</p>
+            <p>2024.01.01-サイトを開設しました。</p>
+        </div>
+    </div>
     <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
         <!-- (A) AUDIO TAG -->
         <div class="fixed bottom-0 left-0 right-0 bg-gray-100 p-4">
             <audio id="demoAudio" controls class="w-full"></audio>
         </div>
-
-
     </div>
+
+    
 </x-app-layout>

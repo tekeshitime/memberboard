@@ -35,6 +35,16 @@
         @endif
 
         <!-- Page Content -->
+        @if(Route::currentRouteName() == 'tracks.index')
+            <!-- indexメソッドに関連する要素を表示 -->
+            <div class="bg-black">
+                <div class="max-w-6xl mx-auto search py-20 px-6 px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-bold text-2xl text-white">お気に入りのトラックを見つけよう</h2>
+                    <input type="text" placeholder="Explore new sounds">
+                    <button type="submit" class="text-white bg-gray-500 rounded font-medium px-4 py-2 text-white">Search</button>
+                </div>
+            </div>
+        @endif
         <main>
             {{ $slot }}
         </main>

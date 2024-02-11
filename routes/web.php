@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\mailController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\PaymentsController;
 use Illuminate\Support\Facades\Route;
@@ -52,9 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Stripeの処理
 Route::post('/payment', [PaymentsController::class, 'payment'])->name('payment');
-// 決済完了ページ
 Route::get('/complete',  [PaymentsController::class, 'complete'])->name('complete');
+Route::get('/mail',  [mailController::class, 'mailsend'])->name('mail');
 
 require __DIR__ . '/auth.php';

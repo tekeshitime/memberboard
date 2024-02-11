@@ -8,19 +8,13 @@
         </div>
     </x-slot>
 
-    <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
-        <div class="search">
-            <h2>お気に入りのトラックを見つけよう</h2>
-            <input type="text" placeholder="Explore new sounds">
-            <button type="submit">Search</button>
-        </div>
-    </div>
+    
     <?php
     // (B1) GET ALL SONGS
     $songs = glob("audio/*", GLOB_BRACE);
     ?>
 
-    <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2 items-center">
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 grid gap-y-2 items-center">
         <div class="flex justify-between items-center">
             <h2>トレンドのトラック</h2>
             <span class="text-right">SEE MORE>></span>
@@ -42,7 +36,7 @@
     </div>
 
 
-    <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
         @if($threads->count())
         @foreach($threads as $thread)
         <x-thread-card :thread="$thread" />
@@ -52,7 +46,7 @@
         @endif
     </div>
 
-    <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
         <h2>お知らせ</h2>
         <div>
             <p>2024.02.01-楽曲○○を追加しました。</p>
@@ -66,7 +60,5 @@
         <div class="fixed bottom-0 left-0 right-0 bg-gray-100 p-4">
             <audio id="demoAudio" controls class="w-full"></audio>
         </div>
-
-
     </div>
 </x-app-layout>
