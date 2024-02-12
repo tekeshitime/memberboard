@@ -24,10 +24,12 @@
                 </p>
                 @auth
                 <div class="flex bottom-0 gap-2 mt-10 justify-center">
-                    <a href={{asset('edit')}}>
+                    <a href={{route('tracks.edit',$track)}}>
                         <button class="bg-gray-500 rounded font-medium px-4 py-2 text-white">編集</button>
                     </a>
-                        <form action="{{asset('delete')}}" method="post">
+                    <form action="{{route('tracks.destroy', ['track' => $track->id])}}" method="post">
+                        @csrf
+                        @method('DELETE')
                         <button type="submit" class="bg-red-500 rounded font-medium px-4 py-2 text-white">削除</button>
                     </form>
                 </div>

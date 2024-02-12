@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\mailController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,5 +57,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/payment', [PaymentsController::class, 'payment'])->name('payment');
 Route::get('/complete',  [PaymentsController::class, 'complete'])->name('complete');
 Route::get('/mail',  [mailController::class, 'mailsend'])->name('mail');
+
+Route::resource('blog', BlogController::class);
 
 require __DIR__ . '/auth.php';

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use App\Models\Blog;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 
 class TrackController extends Controller
@@ -13,9 +16,11 @@ class TrackController extends Controller
      */
     public function index()
     {
+        $blogs = Blog::latest()->get();;
         $tracks = Track::latest()->paginate(20);
         return view('tracks.index', [
-            'tracks' => $tracks
+            'tracks' => $tracks,
+            'blogs' => $blogs,
         ]);
     }
 
@@ -88,7 +93,11 @@ class TrackController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $track = Track::find($id);
+        // if (auth()->user()->id != $track->user_id) {
+        //     return redirect(route('tracks.index'))->with('error', '許可されていない操作です');
+        // }
+        return view('tracks.edit')->with('track', $track);
     }
 
     /**
@@ -96,7 +105,40 @@ class TrackController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $tracks = Track::find($id);
+        // if (auth()->user()->id != $tracks->user_id) {
+        //     return redirect(route('posts.index'))->with('error', '許可されていない操作です');
+        // }
+
+        $tracks->trackTitle = $request->trackTitle;
+        // $artwork_name = $request->file('artwork')->getClientOriginalName();
+        if ($request->file('artwork')) {
+            $pathArtwork = $request->file('artwork')->getClientOriginalName();
+            $tracks->pathArtwork = "storage/image/" . $pathArtwork;
+            $request->file('artwork')->storeAs('image', 'public');
+        }
+
+        $tracks->bpm = $request->bpm;
+        $tracks->key = $request->key;
+
+        if ($request->file('sampleFile')) {
+            $sampleFile = $request->file('sampleFile')->getClientOriginalName();
+            $tracks->pathSampleFile = "storage/audio/sample/" . $sampleFile;
+            $request->file('sampleFile')->storeAs('public/audio/sample', $sampleFile);
+        }
+
+        if ($request->file('downloadFile')) {
+            $downloadFile = $request->file('downloadFile')->getClientOriginalName();
+            $tracks->pathDownloadFile = "storage/audio/original/" . $downloadFile;
+            $request->file('downloadFile')->storeAs('public/audio/original',  $downloadFile);
+        }
+        $tracks->price = $request->price;
+        $tracks->additionalInfo = $request->additionalInfo;
+
+        $tracks->save();
+
+        return redirect(route('tracks.index'))->with('success', 'トラックを更新しました');
     }
 
     /**
@@ -104,6 +146,9 @@ class TrackController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tracks = Track::find($id);
+        $tracks->delete();
+
+        return redirect(route('tracks.index'))->with('success', 'ブログ記事を削除しました');
     }
 }
