@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('trackTitle', 32); // 32文字までの文字列
             $table->string('pathArtwork')->nullable();
             $table->integer('bpm');
