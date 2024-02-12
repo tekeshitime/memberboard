@@ -43,12 +43,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function threads()
+    public function tracks()
     {
-        return $this->hasMany(Thread::class);
+        return $this->hasMany(Track::class);
     }
-    public function comments()
+    public function blogs()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Blog::class);
     }
 }

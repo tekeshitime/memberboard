@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Track;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use File;
 
 
@@ -66,7 +67,9 @@ class TrackController extends Controller
         //     'price' => $request->price,
         //     'additionalInfo' => $request->additionalInfo,
         // ]);
+        $user_id = $request->user()->id;
         Track::create([
+            'user_id' => $user_id,
             'trackTitle' => $request->trackTitle,
             'pathArtwork' => 'storage/' . $dirArtwork . '/' . $artwork_name,
             'bpm' => $request->bpm,

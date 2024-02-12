@@ -33,12 +33,12 @@ class blogController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
-
         $blog = new Blog();
+        $blog->user_id = $request->user()->id;
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->save();
-        return back();
+        return redirect()->route('blog.index');
     }
 
     /**

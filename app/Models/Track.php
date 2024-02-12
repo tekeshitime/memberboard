@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Track extends Model
 {
-    protected $fillable = [
-        'trackTitle',
-        'pathArtwork',
-        'bpm',
-        'key',
-        'pathSampleFile',
-        'pathDownloadFile',
-        'price',
-        'additionalInfo',
+    protected $guarded = [
+        'id',
     ];
+
+    public function user()
+    {
+        return $this->belongTo('App\User');
+    }
 }

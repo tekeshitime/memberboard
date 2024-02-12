@@ -12,4 +12,8 @@ class Blog extends Model
     protected $guarded = [
         'id'
     ];
+    public function user()
+    {
+        return $this->belongTo('App\User');
+    }
 }
