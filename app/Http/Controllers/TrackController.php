@@ -15,7 +15,7 @@ class TrackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $blogs = Blog::latest()->get();;
         $tracks = Track::latest()->paginate(20);
@@ -23,6 +23,21 @@ class TrackController extends Controller
             'tracks' => $tracks,
             'blogs' => $blogs,
         ]);
+    }
+
+    public function archive(Request $request)
+    {
+        /* テーブルから全てのレコードを取得する */
+        $Tracks = Track::query();
+        /* キーワードから検索処理 */
+        $keyword = $request->input('keyword');
+        if (!empty($keyword)) { //$keyword　が空ではない場合、検索処理を実行します
+            $Tracks->where('trackTitle', 'LIKE', "%{$keyword}%")->get();
+        }
+
+        /* ページネーション */
+        $tracks = $Tracks->paginate(5);
+        return view('tracks.archive', ['tracks' => $tracks]);
     }
 
     /**

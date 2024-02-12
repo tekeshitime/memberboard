@@ -23,6 +23,7 @@ Route::get('/', function () {
 });
 
 Route::resource('tracks', TrackController::class);
+Route::get('archive', [TrackController::class, 'archive'])->name('archive');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

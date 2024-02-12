@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Tracks
+            Result
         </h2>
         <a href="{{ route('tracks.create')}}" class="bg-gray-500 rounded font-medium px-4 py-2 text-white">Sell New Track</a>
     </div>
@@ -39,20 +39,7 @@
 
         </div>
     </x-main-contents>
-    <x-main-contents>
-        <h2>おしらせ</h2>
-        @if($blogs->count())
-        @foreach($blogs as $blog)
-        <a href="{{ route('blog.show',$blog->id) }}">
-            <div class="flex">
-                <span class="text-gray-400">{{ $blog->updated_at->format('Y年m月d日') }}</span>
-                <h2>- {{ $blog->title }}</h2>
-        </div></a>
-        @endforeach
-        @else
-        There is no Blogs.
-        @endif
-    </x-main-contents>
+    
     <div class="py-12 max-w-4xl mx-auto sm:px-6 lg:px-8 grid gap-y-2">
         <!-- (A) AUDIO TAG -->
         <div class="fixed bottom-0 left-0 right-0 bg-gray-100 p-4">
