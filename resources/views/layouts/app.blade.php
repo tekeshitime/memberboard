@@ -53,9 +53,9 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('threads') }}">
+                        {{-- <a href="{{ route('') }}"> --}}
                             © 2024 PULSE GARDEN. All Rights Reserved
-                        </a>
+                        {{-- </a> --}}
                     </div>
 
                     <!-- Navigation Links -->

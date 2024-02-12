@@ -23,6 +23,7 @@
                 <div class="">{{$track->additionalInfo}}</div>
                 </p>
                 @auth
+                @if($track->user_id == auth()->user()->id)
                 <div class="flex bottom-0 gap-2 mt-10 justify-center">
                     <a href={{route('tracks.edit',$track)}}>
                         <button class="bg-gray-500 rounded font-medium px-4 py-2 text-white">編集</button>
@@ -33,6 +34,8 @@
                         <button type="submit" class="bg-red-500 rounded font-medium px-4 py-2 text-white">削除</button>
                     </form>
                 </div>
+                @else
+                @endif
                 @endauth
             </div>
             <div class="items p-8 bg-white rounded-md grow">

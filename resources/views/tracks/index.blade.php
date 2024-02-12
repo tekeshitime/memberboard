@@ -41,14 +41,17 @@
     </x-main-contents>
     <x-main-contents>
         <h2>おしらせ</h2>
+        @if($blogs->count())
         @foreach($blogs as $blog)
         <a href="{{ route('blog.show',$blog->id) }}">
             <div class="flex">
                 <span class="text-gray-400">{{ $blog->updated_at->format('Y年m月d日') }}</span>
                 <h2>- {{ $blog->title }}</h2>
         </div></a>
-    
         @endforeach
+        @else
+        There is no Blogs.
+        @endif
         
         
     </x-main-contents>
